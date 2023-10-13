@@ -6,6 +6,7 @@ allowHostPorts: true
 allowPrivilegeEscalation: true
 allowPrivilegedContainer: false
 allowedCapabilities: []
+allowedFlexVolumes: []
 apiVersion: security.openshift.io/v1
 defaultAddCapabilities: []
 fsGroup:
