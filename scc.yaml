@@ -1,41 +1,45 @@
 allowHostDirVolumePlugin: true
-allowHostIPC: false
+allowHostIPC: true
 allowHostNetwork: true
 allowHostPID: true
 allowHostPorts: true
-allowPrivilegeEscalation: true
-allowPrivilegedContainer: false
-allowedCapabilities: []
-allowedFlexVolumes: []
+allowPrivilegedContainer: true
+allowedCapabilities: 
+- '*'
 apiVersion: security.openshift.io/v1
-defaultAddCapabilities: []
-fsGroup:
-  type: MustRunAs
-groups: []
+defaultAddCapabilities: [] 
+fsGroup: 
+  type: RunAsAny
+groups: 
+- system:cluster-admins
+- system:nodes
 kind: SecurityContextConstraints
 metadata:
-  labels:
-    app: test-collector
-    app.kubernetes.io/instance: test-logging
+  annotations:
+    kubernetes.io/description: 'privileged allows access to all privileged and host
+      features and the ability to run as any user, any group, any fsGroup, and with
+      any SELinux context.  WARNING: this is the most relaxed SCC and should be used
+      only for cluster administration. Grant with caution.'
+  creationTimestamp: null
   name: test
-priority: 10
-readOnlyRootFilesystem: true
-requiredDropCapabilities:
-- ALL
-runAsUser:
+priority: null
+readOnlyRootFilesystem: false
+requiredDropCapabilities: 
+- KILL
+- MKNOD
+- SETUID
+- SETGID
+runAsUser: 
   type: RunAsAny
-seLinuxContext:
-  seLinuxOptions:
-    level: s0
-    role: system_r
-    type: spc_t
-    user: system_u
-  type: MustRunAs
-supplementalGroups:
+seLinuxContext: 
   type: RunAsAny
+seccompProfiles:
+- '*'
+supplementalGroups: 
+  type: RunAsAny
+users: 
+- system:serviceaccount:default:registry
+- system:serviceaccount:default:router
+- system:serviceaccount:openshift-infra:build-controller
 volumes:
-- configMap
-- downwardAPI
-- emptyDir
-- hostPath
-- secret
+- '*'
