@@ -16,7 +16,7 @@ metadata:
   creationTimestamp: "2023-08-23T12:15:17Z"
   generation: 1
   labels:
-    app: splunk-otel-collector
+    app: test-collector
     app.kubernetes.io/instance: test-logging
   name: test
 priority: 10
