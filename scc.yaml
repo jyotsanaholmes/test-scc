@@ -20,7 +20,6 @@ metadata:
       features and the ability to run as any user, any group, any fsGroup, and with
       any SELinux context.  WARNING: this is the most relaxed SCC and should be used
       only for cluster administration. Grant with caution.'
-  creationTimestamp: null
   name: test
 priority: null
 readOnlyRootFilesystem: false
